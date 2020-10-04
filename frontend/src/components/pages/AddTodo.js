@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Container, Row, Col, Button } from 'react-bootstrap';
+import { Form, Container, Row, Col, Button, Popover, OverlayTrigger } from 'react-bootstrap';
 
 export const AddTodo = (props) => {
 
@@ -12,6 +12,14 @@ export const AddTodo = (props) => {
     const [length, setLength] = useState(1);
     const [completion, setCompletion] = useState(1);
 
+    const successPopover = (
+        <Popover id="popover-basic">
+          <Popover.Content>
+            Task added!
+          </Popover.Content>
+        </Popover>
+      );
+
     const handleSubmit = e => {
         e.preventDefault();
         const newTask = {
@@ -22,7 +30,11 @@ export const AddTodo = (props) => {
             length: length, 
             completion: completion
         }
-
+        setText('');
+        setDeadline(1);
+        setImportance(1);
+        setLength(1);
+        setCompletion(1);
         addTask(tasks, newTask);
         console.log(newTask)
     }
@@ -64,8 +76,9 @@ export const AddTodo = (props) => {
                     </Col>
                 </Row>
                 <br />
-                <Button type ="submit" style = {{background: "#C55967", border: "none", fontSize: "30px"}}>Add task</Button>
-
+                <OverlayTrigger trigger="click" rootClose placement="right" overlay={successPopover}>
+                    <Button type ="submit" style = {{background: "#C55967", border: "none", fontSize: "30px"}}>Add task</Button>
+                </OverlayTrigger>
             </Form>
 
         </Container>
