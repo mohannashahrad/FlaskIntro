@@ -28,5 +28,18 @@ def bad_request(e):
 
 app.register_blueprint(todos)
 
+<<<<<<< HEAD
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
+||||||| merged common ancestors
+if __name__ == "__main__" :
+    db.create_all()
+    app.run(debug=True) 
+=======
+if __name__ == "__main__" :
+    db.create_all()
+    app.run(debug=True) 
+
+    i = 12
+    
+>>>>>>> 902d206914b30eb002027aca28300dd3c6dd8c5b
