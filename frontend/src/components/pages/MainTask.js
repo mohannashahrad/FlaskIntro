@@ -7,6 +7,7 @@ export const MainTask = (props) => {
     var [topTask, setTopTask] = useState([]);
 
     const tasks = props.tasks;
+    var empty = tasks.length === 0;
     const reducer = (prevTop, currentTask) => (1 / prevTop.deadline * prevTop.importance) > (1 / currentTask.deadline * currentTask.importance) ? prevTop : currentTask;
     if (tasks.length > 0) {
         topTask = tasks.reduce(reducer);
@@ -15,7 +16,7 @@ export const MainTask = (props) => {
     return (
         <Container fluid ="sm" style= {{alignItems: "center"}}>
             <h1>What should I do next?</h1>
-            <Task key = {topTask.id} task = {topTask} deleteTask = {props.deleteTask} />
+            <Task key = {topTask.id} task = {topTask} deleteTask = {props.deleteTask} tasks = {tasks} empty = {empty}/>
             <Row>
                 <Col>
                     <Button type ="submit" style = {{background: "#C55967", border: "none", fontSize: "30px"}}>

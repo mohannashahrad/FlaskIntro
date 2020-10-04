@@ -10,10 +10,18 @@ export const Task = (props) => {
         deleteTask(id);
     }
 
+    const CardText = () => {
+        if (props.empty) {  
+            return <Card.Text> Relax... <span style = {{float: "right"}}> ... or add a new task! </span></Card.Text>
+        } else {
+            return <Card.Text>{text} <span style = {{float: "right"}}> ... within {deadline} days </span></Card.Text>
+        }
+    }
+
     return (
         <div style={{ padding: "10px"}}>
         <Card className="task" style = {{width: "100%", color: "#fff", background: "#87C38F", padding: "0px 10px", textAlign: "left", align: "center"}}>
-            <Card.Text>{text} <span style = {{float: "right"}}> ... within {deadline} days </span></Card.Text>
+            <CardText />
             <Button onClick={handleSubmit} type="submit" className="delete-btn" style= {{backgroundColor: "#C55967", border:"0", textAlign:"left"}}> ✖ </Button>
         </Card>
         </div>
