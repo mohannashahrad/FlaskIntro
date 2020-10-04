@@ -38,13 +38,13 @@ export const AddTodo = (props) => {
                 <Row>
                     <Col>
                         <Form.Group>
-                            <Form.Label>Deadline</Form.Label>
+                            <Form.Label>Deadline (days)</Form.Label>
                             <Form.Control id="deadline" placeholder = "How many days?" value={deadline} onChange = {e => setDeadline(e.target.value)}/>
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group>
-                            <Form.Label>Importance</Form.Label>
+                            <Form.Label>Importance (%)</Form.Label>
                             <Form.Control id="importance" placeholder = "From 1-100" value={importance} onChange = {e => setImportance(e.target.value)}/>
                         </Form.Group>
                     </Col>
@@ -52,13 +52,13 @@ export const AddTodo = (props) => {
                 <Row>
                     <Col>
                         <Form.Group>
-                            <Form.Label>Time Estimate</Form.Label>
+                            <Form.Label>Time Estimate (hours)</Form.Label>
                             <Form.Control id="length" placeholder = "How many hours?" value={length} onChange = {e => setLength(e.target.value)}/>
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group>
-                            <Form.Label>Completion</Form.Label>
+                            <Form.Label>Completion (%)</Form.Label>
                             <Form.Control id = "completion" placeholder = "What percent is done?" value={completion} onChange = {e => setCompletion(e.target.value)}/>
                         </Form.Group>
                     </Col>
