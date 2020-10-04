@@ -13,12 +13,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
-  var [tasks, setTasks] = useState([
+  var [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('localTasks')) || [
     { id: 1, text: 'Finish hackathon project', deadline: 2, importance: 50, length: 5, completion: 50 },
     { id: 2, text: 'CSC236 assignment', deadline: 4, importance: 40, length: 5, completion: 0  },
     { id: 3, text: 'Apply for internship', deadline: 40, importance: 10, length: 2, completion: 0  },
     { id: 4, text: 'Do laundry', deadline: 0, importance: 5, length: 1, completion: 99  }
   ]);
+
+  React.useEffect(() => {
+    localStorage.setItem('localTasks', JSON.stringify(tasks));
+  }, [tasks]);
 
   const addTask = (tasks, newTask) => {
     setTasks([...tasks, newTask]);
