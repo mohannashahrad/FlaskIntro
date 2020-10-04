@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, request
 from backend_flask.models import Todo, db
 from backend_flask.utils import todo_serializer, generate_response
-import backend_flask.utils
 
 todos = Blueprint('planno2', __name__)
 
