@@ -1,0 +1,6 @@
+#This file contains all the required softwares to run the project
+
+React 16.4.1
+Python 3.6.4
+Flask 1.0.2
+Flask-SQLAlchemy 2.3.2
