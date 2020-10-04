@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { Task } from '../Task';
-import { Container, Button, Row, Col } from 'react-bootstrap';
+import { Container, Button, Row, Col, Popover, OverlayTrigger } from 'react-bootstrap';
 
 export const MainTask = (props) => {
     
@@ -29,8 +29,17 @@ export const MainTask = (props) => {
 
     const handleProcrastinate = e => {
         e.preventDefault();
-        procrastinate();
+        // procrastinate(); 
+        // Not currently working 
     }
+
+    const procrastinatePopover = (
+        <Popover id="popover-basic">
+          <Popover.Content>
+            No, do it now!
+          </Popover.Content>
+        </Popover>
+      );
 
 
     return (
@@ -39,9 +48,11 @@ export const MainTask = (props) => {
             <Task task = {topTask} deleteTask = {deleteTask} tasks = {tasks} empty = {empty} range = {0}/>
             <Row>
                 <Col>
-                    <Button onClick = {handleProcrastinate} type ="submit" style = {{background: "#C55967", border: "none", fontSize: "30px"}}>
-                        Procrastinate
-                    </Button>
+                    <OverlayTrigger trigger="click" rootClose placement="left" overlay={procrastinatePopover}>
+                        <Button onClick = {handleProcrastinate} type ="submit" style = {{background: "#C55967", border: "none", fontSize: "30px"}}>
+                            Procrastinate
+                        </Button>
+                    </OverlayTrigger>
                     {' '}
                     <Button onClick = {handleDone} type ="submit" style = {{background: "#C55967", border: "none", fontSize: "30px"}}>
                         Done!
