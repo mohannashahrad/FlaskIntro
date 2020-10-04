@@ -4,8 +4,9 @@ import { Container, Button, Row, Col } from 'react-bootstrap';
 
 export const MainTask = (props) => {
     
-
-    const tasks = props.tasks;
+    const procrastinate = props.procrastinate;
+    const deleteTask = props.deleteTask;
+    var tasks = props.tasks;
     
 
     const getUrgency = (task) => {
@@ -21,17 +22,28 @@ export const MainTask = (props) => {
     empty ? topTask = {id: 0, text: '', deadline: 0, importance: 0, length: 0, completion: 0} : topTask = tasks[0];
    
 
+    const handleDone = e => {
+        e.preventDefault();
+        deleteTask(topTask.id);
+    }
+
+    const handleProcrastinate = e => {
+        e.preventDefault();
+        procrastinate();
+    }
+
+
     return (
         <Container fluid ="sm" style= {{alignItems: "center"}}>
             <h1>What should I do next?</h1>
-            <Task task = {topTask} deleteTask = {props.deleteTask} tasks = {tasks} empty = {empty} range = {0}/>
+            <Task task = {topTask} deleteTask = {deleteTask} tasks = {tasks} empty = {empty} range = {0}/>
             <Row>
                 <Col>
-                    <Button type ="submit" style = {{background: "#C55967", border: "none", fontSize: "30px"}}>
+                    <Button onClick = {handleProcrastinate} type ="submit" style = {{background: "#C55967", border: "none", fontSize: "30px"}}>
                         Procrastinate
                     </Button>
                     {' '}
-                    <Button type ="submit" style = {{background: "#C55967", border: "none", fontSize: "30px"}}>
+                    <Button onClick = {handleDone} type ="submit" style = {{background: "#C55967", border: "none", fontSize: "30px"}}>
                         Done!
                     </Button>
                 </Col>

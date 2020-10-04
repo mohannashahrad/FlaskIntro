@@ -13,7 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
-  const [tasks, setTasks] = useState([
+  var [tasks, setTasks] = useState([
     { id: 1, text: 'Finish hackathon project', deadline: 2, importance: 50, length: 5, completion: 50 },
     { id: 2, text: 'CSC236 assignment', deadline: 4, importance: 40, length: 5, completion: 0  },
     { id: 3, text: 'Apply for internship', deadline: 40, importance: 10, length: 2, completion: 0  },
@@ -28,12 +28,17 @@ function App() {
     setTasks([...tasks.filter(task => task.id !== id)]);
   }
 
+  const procrastinate = () => {
+    // Not currently working
+    setTasks([...tasks.slice(1), tasks[0]]);
+  }
+
   return (
     <Container style={{maxWidth: "100%"}} className = "App">
       <Header />
         <Router>
             <Route exact path = "/" render={(routeProps) =>
-              <MainTask {...routeProps} tasks = {tasks} deleteTask = {deleteTask} />
+              <MainTask {...routeProps} tasks = {tasks} deleteTask = {deleteTask} procrastinate = {procrastinate}/>
             } />
             <Route path = "/addtodo" render={(routeProps) =>
               <AddTodo {...routeProps} tasks = {tasks} addTask = {addTask} />
