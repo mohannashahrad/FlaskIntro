@@ -65,3 +65,4 @@ if __name__ == "__main__" :
     app.run(debug=True) 
 
     name = "planno"
+    name2 = "planno2"
