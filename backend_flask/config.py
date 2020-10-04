@@ -21,6 +21,6 @@ class ProductionConfig(BaseConfig):
 
 
 config = {
-    'dev': 'flask_api.config.DevelopmentConfig',
-    'prod': 'flask_api.config.ProductionConfig'
+    'dev': 'backend_flask.config.DevelopmentConfig',
+    'prod': 'backend_flask.config.ProductionConfig'
 }
