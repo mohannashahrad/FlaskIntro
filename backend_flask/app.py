@@ -59,8 +59,10 @@ def update(id):
 
     else:
         return render_template('update.html', task=task)        
-i = 10
 
 if __name__ == "__main__" :
     db.create_all()
     app.run(debug=True) 
+
+    i = 12
+    
