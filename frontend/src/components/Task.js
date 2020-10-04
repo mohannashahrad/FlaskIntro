@@ -12,9 +12,9 @@ export const Task = (props) => {
 
     const CardText = () => {
         if (props.empty) {  
-            return <Card.Text> Relax... <span style = {{float: "right"}}> ... or add a new task! </span></Card.Text>
+            return <Card.Text style= {{marginBottom: "0px"}}> Relax... <span style = {{float: "right"}}> ... or add a new task! </span></Card.Text>
         } else {
-            return <Card.Text>{text} <span style = {{float: "right"}}> ... within {deadline} days </span></Card.Text>
+            return <Card.Text style= {{marginBottom: "0px"}}>{text} <span style = {{float: "right"}}> ... within {deadline} days </span></Card.Text>
         }
     }
 
