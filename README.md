@@ -11,4 +11,4 @@ It helps users prioritaze their tasks and when inputting their activities with h
 
 ## Installation
 
-Run requirements.txt
+Make sure your system has everything mentioned in requirements.txt
