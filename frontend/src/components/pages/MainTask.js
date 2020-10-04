@@ -3,20 +3,28 @@ import { Task } from '../Task';
 import { Container, Button, Row, Col } from 'react-bootstrap';
 
 export const MainTask = (props) => {
-
-    var [topTask, setTopTask] = useState([]);
+    
 
     const tasks = props.tasks;
-    var empty = tasks.length === 0;
-    const reducer = (prevTop, currentTask) => (1 / prevTop.deadline * prevTop.importance) > (1 / currentTask.deadline * currentTask.importance) ? prevTop : currentTask;
-    if (tasks.length > 0) {
-        topTask = tasks.reduce(reducer);
+    
+
+    const getUrgency = (task) => {
+        return task.importance * task.length * 10 / Math.max(1, task.completion) / Math.max(0.1, task.deadline);
     }
+
+    tasks.sort(function(a, b) {
+        return getUrgency(b) - getUrgency(a); 
+    });
+
+    var topTask;
+    var empty = tasks.length === 0;
+    empty ? topTask = {id: 0, text: '', deadline: 0, importance: 0, length: 0, completion: 0} : topTask = tasks[0];
+   
 
     return (
         <Container fluid ="sm" style= {{alignItems: "center"}}>
             <h1>What should I do next?</h1>
-            <Task key = {topTask.id} task = {topTask} deleteTask = {props.deleteTask} tasks = {tasks} empty = {empty}/>
+            <Task task = {topTask} deleteTask = {props.deleteTask} tasks = {tasks} empty = {empty} range = {0}/>
             <Row>
                 <Col>
                     <Button type ="submit" style = {{background: "#C55967", border: "none", fontSize: "30px"}}>
@@ -31,7 +39,7 @@ export const MainTask = (props) => {
             <br />
            <h1>What else?</h1>
             {tasks.filter(task => task.id !== topTask.id).map(task => (
-                <Task key = {task.id} task = {task} deleteTask = {props.deleteTask} />
+                <Task task = {task} deleteTask = {props.deleteTask} range = {tasks.indexOf(task) / tasks.length}/>
             ))}
         </Container>
     )
